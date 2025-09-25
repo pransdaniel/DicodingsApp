@@ -1,17 +1,39 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  root: resolve(__dirname, 'src'),
-  publicDir: resolve(__dirname, 'src', 'public'),
-  build: {
-    outDir: resolve(__dirname, 'dist'),
-    emptyOutDir: true,
+  base: '/Submission-Intermediate/',
+  
+  server: {
+    port: 5173,
+    open: true,
+    host: true,
+    cors: true
   },
+  
+  build: {
+    outDir: 'dist',
+    emptyOutDir: true,
+    assetsDir: 'assets',
+    sourcemap: false,
+    
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, 'index.html')
+      },
+      output: {
+        entryFileNames: 'assets/[name]-[hash].js',
+        chunkFileNames: 'assets/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash].[ext]'
+      }
+    }
+  },
+  
   resolve: {
     alias: {
-      '@': resolve(__dirname, 'src'),
-    },
+      '@': resolve(__dirname, 'src')
+    }
   },
+  
+  publicDir: 'public'
 });

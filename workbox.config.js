@@ -15,7 +15,7 @@ module.exports = {
     'STUDENT.txt',
     '**/*.map'
   ],
-  swDest: 'sw-generated.js',
+  swDest: 'sw-generated.js', 
   
   // Define runtime caching rules
   runtimeCaching: [

@@ -324,7 +324,7 @@ class ServiceWorkerRegister {
         <h4>Install di Desktop:</h4>
         <ol>
           <li>Klik icon install <i class="fas fa-plus"></i> di address bar</li>
-          <li>Atau gunakan menu browser → "Install Peta Bicara"</li>
+          <li>Atau gunakan menu browser → "Install app"</li>
           <li>Klik "Install"</li>
         </ol>
       `;

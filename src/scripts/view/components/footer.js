@@ -12,13 +12,12 @@ render() {
       <div class="container">
         <div class="footer-content compact">
           <div class="footer-brand">
-            <h2><i class="fas fa-map-marked-alt"></i> PetaBicara</h2>
-            <p>Berbagi cerita berdasarkan lokasi di Indonesia</p>
+            <h2><i class="fas fa-map-marked-alt"></i> Mystory Apps</h2>
+            
           </div>
           
           <div class="footer-links-container">
             <div class="footer-links">
-              <h3>Navigasi</h3>
               <ul>
                 <li><a href="#/">Beranda</a></li>
                 <li><a href="#/tambah">Tambah Cerita</a></li>
@@ -27,15 +26,14 @@ render() {
             </div>
             
             <div class="footer-contact">
-              <h3>Kontak</h3>
-              <p><i class="fas fa-envelope"></i> taufan759@gmail.com</p>
-              <p><i class="fas fa-map-pin"></i> Kota Tegal, Indonesia</p>
+              <p><i class="fas fa-envelope"></i> ifs22039@gmail.com</p>
+              <p><i class="fas fa-map-pin"></i> Labuhanbatu, Indonesia</p>
             </div>
           </div>
         </div>
         
         <div class="footer-copyright">
-          <p>&copy; ${new Date().getFullYear()} PetaBicara - Berbagi cerita, berbagi lokasi</p>
+          <p>&copy; ${new Date().getFullYear()} Mystory Apps by ifs22039</p>
         </div>
       </div>
     `;

@@ -15,7 +15,7 @@ class HomeView {
 
   render() {
     console.log('HomeView render called');
-    document.title = 'PetaBicara - Cerita Bermakna';
+    document.title = 'Mystory';
     
     // Clear any existing content
     this.container.innerHTML = '';
@@ -23,11 +23,9 @@ class HomeView {
     this.container.innerHTML = `
       <section class="hero-section">
         <div class="container">
-          <h2 class="main-title">Peta Bicara, Cerita Bermakna</h2>
+          <h2 class="main-title">MyStory Apps</h2>
           <p class="main-description">
-            Dengarkan kisah-kisah yang lahir dari berbagai penjuru Indonesia dan negara lainnya. 
-            Setiap titik di peta menyimpan sepotong harapan, kenangan, dan suara hati yang tak ingin dilupakan. 
-            "Karena setiap tempat punya cerita dan setiap cerita layak untuk didengar."
+            Platform berbagi cerita berdasarkan lokasi di Indonesia. Temukan cerita menarik dari berbagai tempat dan bagikan pengalaman Anda dengan komunitas!
           </p>
         </div>
       </section>
@@ -39,57 +37,6 @@ class HomeView {
             <div class="loading-indicator" id="loadingIndicator">
               <i class="fas fa-spinner fa-spin" aria-hidden="true"></i>
               <span>Memuat cerita...</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="how-it-works">
-        <div class="container">
-          <h2 class="section-title">Cara Kerjanya</h2>
-          <div class="steps-container">
-            <div class="step-card">
-              <div class="step-icon">
-                <i class="fas fa-user-plus"></i>
-              </div>
-              <h3>1. Daftar Akun</h3>
-              <p>Buat akun gratis untuk mulai berbagi cerita Anda</p>
-            </div>
-            <div class="step-card">
-              <div class="step-icon">
-                <i class="fas fa-map-pin"></i>
-              </div>
-              <h3>2. Pilih Lokasi</h3>
-              <p>Tandai lokasi cerita Anda di peta interaktif</p>
-            </div>
-            <div class="step-card">
-              <div class="step-icon">
-                <i class="fas fa-book-open"></i>
-              </div>
-              <h3>3. Bagikan Cerita</h3>
-              <p>Tulis dan unggah cerita Anda dengan foto</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="testimonials">
-        <div class="container">
-          <h2 class="section-title">Kata Pengguna</h2>
-          <div class="testimonial-carousel">
-            <div class="testimonial-card">
-              <div class="testimonial-content">
-                <p>"PetaBicara membantu saya menemukan tempat-tempat tersembunyi yang tidak pernah saya ketahui sebelumnya!"</p>
-              </div>
-              <div class="testimonial-author">
-                <div class="author-avatar">
-                  <i class="fas fa-user-circle"></i>
-                </div>
-                <div class="author-info">
-                  <h4>Muhammad Taufan Akbar</h4>
-                  <p>Petualang</p>
-                </div>
-              </div>
             </div>
           </div>
         </div>

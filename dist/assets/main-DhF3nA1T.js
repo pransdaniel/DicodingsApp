@@ -32,7 +32,7 @@
           <i class="fas fa-download"></i>
         </div>
         <div class="install-banner-text">
-          <h3>Install MyStory</h3>
+          <h3>Install Peta Bicara</h3>
           <p>Pasang aplikasi untuk pengalaman terbaik!</p>
         </div>
         <div class="install-banner-actions">
@@ -164,7 +164,7 @@
         <h4>Install di Desktop:</h4>
         <ol>
           <li>Klik icon install <i class="fas fa-plus"></i> di address bar</li>
-          <li>Atau gunakan menu browser → "Install MyStory Apps"</li>
+          <li>Atau gunakan menu browser → "Install app"</li>
           <li>Klik "Install"</li>
         </ol>
       `;const o=document.createElement("div");o.style.cssText=`
@@ -190,7 +190,7 @@
       ">
         <h3 style="margin: 0 0 1rem 0; color: #333;">
           <i class="fas fa-mobile-alt" style="color: #2196F3;"></i>
-          Install MyStory Apps
+          Install Peta Bicara
         </h3>
         ${i}
         <button onclick="this.closest('div').parentElement.remove()" style="
@@ -664,13 +664,12 @@
       <div class="container">
         <div class="footer-content compact">
           <div class="footer-brand">
-            <h2><i class="fas fa-map-marked-alt"></i> PetaBicara</h2>
-            <p>Berbagi cerita berdasarkan lokasi di Indonesia</p>
+            <h2><i class="fas fa-map-marked-alt"></i> Mystory Apps</h2>
+            
           </div>
           
           <div class="footer-links-container">
             <div class="footer-links">
-              <h3>Navigasi</h3>
               <ul>
                 <li><a href="#/">Beranda</a></li>
                 <li><a href="#/tambah">Tambah Cerita</a></li>
@@ -679,15 +678,14 @@
             </div>
             
             <div class="footer-contact">
-              <h3>Kontak</h3>
-              <p><i class="fas fa-envelope"></i> taufan759@gmail.com</p>
-              <p><i class="fas fa-map-pin"></i> Kota Tegal, Indonesia</p>
+              <p><i class="fas fa-envelope"></i> ifs22039@gmail.com</p>
+              <p><i class="fas fa-map-pin"></i> Labuhanbatu, Indonesia</p>
             </div>
           </div>
         </div>
         
         <div class="footer-copyright">
-          <p>&copy; ${new Date().getFullYear()} MyStory Apps</p>
+          <p>&copy; ${new Date().getFullYear()} Mystory Apps by ifs22039</p>
         </div>
       </div>
     `,!document.getElementById("compactFooterStyles"))){const t=document.createElement("style");t.id="compactFooterStyles",t.textContent=`
@@ -836,14 +834,12 @@
           </div>
         </div>
       </div>
-    `,setTimeout(()=>{this._initMap(),this._initCameraButtons(),this._initFormSubmit(),console.log("Add story page components initialized")},100)}_initMap(){if(console.log("Initializing map"),!document.getElementById("pickLocationMap")){console.error("Map container not found");return}try{this._map=L.map("pickLocationMap").setView([-2.5489,118.0149],5),L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(this._map),this._map.on("click",t=>{this._updateMarker(t.latlng.lat,t.latlng.lng)}),console.log("Map initialized successfully")}catch(t){console.error("Error initializing map:",t)}}_updateMarker(e,t){console.log("Updating marker position:",e,t),this._position.lat=e,this._position.lon=t,document.getElementById("latValue").textContent=e.toFixed(6),document.getElementById("lonValue").textContent=t.toFixed(6),this._marker&&this._map.removeLayer(this._marker),this._marker=L.marker([e,t]).addTo(this._map),this._marker.bindPopup("Lokasi cerita Anda").openPopup()}_initCameraButtons(){console.log("Initializing camera buttons");const e=document.getElementById("startCameraBtn"),t=document.getElementById("captureBtn"),i=document.getElementById("retakeBtn"),o=document.getElementById("cameraFeed"),r=document.getElementById("capturedImage");if(!e||!t||!i||!o||!r){console.error("Camera elements not found");return}o.style.display="none",r.style.display="none",e.addEventListener("click",async()=>{console.log("Start camera button clicked"),this._cameraActive||(e.disabled=!0,o.style.display="block",r.style.display="none",await cameraHelper.startCamera(o)?(console.log("Camera started successfully"),this._cameraActive=!0,t.disabled=!1,i.disabled=!0):(console.error("Failed to start camera"),e.disabled=!1,o.style.display="none",this.showMessage("Gagal memulai kamera. Pastikan kamera diizinkan.","error")))}),t.addEventListener("click",()=>{if(console.log("Capture button clicked"),this._cameraActive){const a=cameraHelper.captureImage(o,this._canvas);a?(console.log("Image captured successfully"),r.src=a,o.style.display="none",r.style.display="block",t.disabled=!0,i.disabled=!1,this._cameraActive=!1):(console.error("Failed to capture image"),this.showMessage("Gagal mengambil gambar. Coba lagi.","error"))}}),i.addEventListener("click",async()=>{console.log("Retake button clicked"),r.style.display="none",o.style.display="block",i.disabled=!0,await cameraHelper.startCamera(o)?(console.log("Camera restarted successfully"),this._cameraActive=!0,t.disabled=!1):(console.error("Failed to restart camera"),e.disabled=!1,o.style.display="none",this.showMessage("Gagal memulai kamera. Pastikan kamera diizinkan.","error"))})}_initFormSubmit(){console.log("Initializing form submission");const e=document.getElementById("addStoryForm");if(!e){console.error("AddStoryForm not found!");return}e.addEventListener("submit",async t=>{t.preventDefault(),console.log("Form submitted");const i=document.getElementById("description").value.trim(),o=document.getElementById("capturedImage"),r={description:i,hasImage:o.src&&o.src!=="about:blank"&&o.style.display!=="none",position:{...this._position}};this._presenter?this._presenter.submitStory(r):(console.error("Presenter not set"),this.showMessage("Terjadi kesalahan: presenter belum terdaftar","error"))})}validateForm(){const e=document.getElementById("description").value.trim(),t=document.getElementById("capturedImage"),{lat:i,lon:o}=this._position;let r=!1,a="";return e?!t.src||t.src==="about:blank"||t.style.display==="none"?(a="Gambar Anda belum diambil!",r=!0):(i===null||o===null)&&(a="Pilih lokasi pada peta!",r=!0):(a="Cerita tidak boleh kosong.",r=!0),r?(this.showMessage(a,"error"),!1):!0}async getStoryData(){const e=document.getElementById("description").value.trim(),t=await cameraHelper.getCapturedImageBlob(),{lat:i,lon:o}=this._position;return{description:e,photoBlob:t,lat:i,lon:o}}showMessage(e,t="success"){console.log(`Showing ${t} message:`,e);const i=document.getElementById("messageContainer");i&&(i.innerHTML=`<div class="message ${t}"><p>${e}</p></div>`,setTimeout(()=>{i.innerHTML=""},3e3))}showLoading(){const e=document.getElementById("loadingIndicator");e&&(e.style.display="flex")}hideLoading(){const e=document.getElementById("loadingIndicator");e&&(e.style.display="none")}showSuccess(e){this.showMessage(e,"success"),this.resetForm()}resetForm(){const e=document.getElementById("description"),t=document.getElementById("capturedImage");e&&(e.value=""),t&&(t.style.display="none",t.src=""),this._marker&&(this._map.removeLayer(this._marker),this._marker=null),this._position={lat:null,lon:null};const i=document.getElementById("latValue"),o=document.getElementById("lonValue");i&&o&&(i.textContent="Belum dipilih",o.textContent="Belum dipilih"),this._cameraActive&&this._stopCameraAndCleanup()}showError(e){this.showMessage(e,"error")}destroy(){console.log("Destroying add story view"),this._cameraActive&&this._stopCameraAndCleanup(),this._map&&(this._map.remove(),this._map=null)}scheduleNavigation(e,t=1e3){setTimeout(e,t)}navigateToRoute(e){window.router&&window.router.navigateTo(e)}}window.AddStoryView=z;console.log("AddStoryView exported to window");class R{constructor(){this.container=document.querySelector("#mainContent"),this.presenter=null,this.map=null,this.markers=[],this.storiesContainer=null,this.loadingIndicator=null}setPresenter(e){this.presenter=e,console.log("HomeView: Presenter set successfully")}render(){console.log("HomeView render called"),document.title="PetaBicara - Cerita Bermakna",this.container.innerHTML="",this.container.innerHTML=`
+    `,setTimeout(()=>{this._initMap(),this._initCameraButtons(),this._initFormSubmit(),console.log("Add story page components initialized")},100)}_initMap(){if(console.log("Initializing map"),!document.getElementById("pickLocationMap")){console.error("Map container not found");return}try{this._map=L.map("pickLocationMap").setView([-2.5489,118.0149],5),L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(this._map),this._map.on("click",t=>{this._updateMarker(t.latlng.lat,t.latlng.lng)}),console.log("Map initialized successfully")}catch(t){console.error("Error initializing map:",t)}}_updateMarker(e,t){console.log("Updating marker position:",e,t),this._position.lat=e,this._position.lon=t,document.getElementById("latValue").textContent=e.toFixed(6),document.getElementById("lonValue").textContent=t.toFixed(6),this._marker&&this._map.removeLayer(this._marker),this._marker=L.marker([e,t]).addTo(this._map),this._marker.bindPopup("Lokasi cerita Anda").openPopup()}_initCameraButtons(){console.log("Initializing camera buttons");const e=document.getElementById("startCameraBtn"),t=document.getElementById("captureBtn"),i=document.getElementById("retakeBtn"),o=document.getElementById("cameraFeed"),r=document.getElementById("capturedImage");if(!e||!t||!i||!o||!r){console.error("Camera elements not found");return}o.style.display="none",r.style.display="none",e.addEventListener("click",async()=>{console.log("Start camera button clicked"),this._cameraActive||(e.disabled=!0,o.style.display="block",r.style.display="none",await cameraHelper.startCamera(o)?(console.log("Camera started successfully"),this._cameraActive=!0,t.disabled=!1,i.disabled=!0):(console.error("Failed to start camera"),e.disabled=!1,o.style.display="none",this.showMessage("Gagal memulai kamera. Pastikan kamera diizinkan.","error")))}),t.addEventListener("click",()=>{if(console.log("Capture button clicked"),this._cameraActive){const a=cameraHelper.captureImage(o,this._canvas);a?(console.log("Image captured successfully"),r.src=a,o.style.display="none",r.style.display="block",t.disabled=!0,i.disabled=!1,this._cameraActive=!1):(console.error("Failed to capture image"),this.showMessage("Gagal mengambil gambar. Coba lagi.","error"))}}),i.addEventListener("click",async()=>{console.log("Retake button clicked"),r.style.display="none",o.style.display="block",i.disabled=!0,await cameraHelper.startCamera(o)?(console.log("Camera restarted successfully"),this._cameraActive=!0,t.disabled=!1):(console.error("Failed to restart camera"),e.disabled=!1,o.style.display="none",this.showMessage("Gagal memulai kamera. Pastikan kamera diizinkan.","error"))})}_initFormSubmit(){console.log("Initializing form submission");const e=document.getElementById("addStoryForm");if(!e){console.error("AddStoryForm not found!");return}e.addEventListener("submit",async t=>{t.preventDefault(),console.log("Form submitted");const i=document.getElementById("description").value.trim(),o=document.getElementById("capturedImage"),r={description:i,hasImage:o.src&&o.src!=="about:blank"&&o.style.display!=="none",position:{...this._position}};this._presenter?this._presenter.submitStory(r):(console.error("Presenter not set"),this.showMessage("Terjadi kesalahan: presenter belum terdaftar","error"))})}validateForm(){const e=document.getElementById("description").value.trim(),t=document.getElementById("capturedImage"),{lat:i,lon:o}=this._position;let r=!1,a="";return e?!t.src||t.src==="about:blank"||t.style.display==="none"?(a="Gambar Anda belum diambil!",r=!0):(i===null||o===null)&&(a="Pilih lokasi pada peta!",r=!0):(a="Cerita tidak boleh kosong.",r=!0),r?(this.showMessage(a,"error"),!1):!0}async getStoryData(){const e=document.getElementById("description").value.trim(),t=await cameraHelper.getCapturedImageBlob(),{lat:i,lon:o}=this._position;return{description:e,photoBlob:t,lat:i,lon:o}}showMessage(e,t="success"){console.log(`Showing ${t} message:`,e);const i=document.getElementById("messageContainer");i&&(i.innerHTML=`<div class="message ${t}"><p>${e}</p></div>`,setTimeout(()=>{i.innerHTML=""},3e3))}showLoading(){const e=document.getElementById("loadingIndicator");e&&(e.style.display="flex")}hideLoading(){const e=document.getElementById("loadingIndicator");e&&(e.style.display="none")}showSuccess(e){this.showMessage(e,"success"),this.resetForm()}resetForm(){const e=document.getElementById("description"),t=document.getElementById("capturedImage");e&&(e.value=""),t&&(t.style.display="none",t.src=""),this._marker&&(this._map.removeLayer(this._marker),this._marker=null),this._position={lat:null,lon:null};const i=document.getElementById("latValue"),o=document.getElementById("lonValue");i&&o&&(i.textContent="Belum dipilih",o.textContent="Belum dipilih"),this._cameraActive&&this._stopCameraAndCleanup()}showError(e){this.showMessage(e,"error")}destroy(){console.log("Destroying add story view"),this._cameraActive&&this._stopCameraAndCleanup(),this._map&&(this._map.remove(),this._map=null)}scheduleNavigation(e,t=1e3){setTimeout(e,t)}navigateToRoute(e){window.router&&window.router.navigateTo(e)}}window.AddStoryView=z;console.log("AddStoryView exported to window");class R{constructor(){this.container=document.querySelector("#mainContent"),this.presenter=null,this.map=null,this.markers=[],this.storiesContainer=null,this.loadingIndicator=null}setPresenter(e){this.presenter=e,console.log("HomeView: Presenter set successfully")}render(){console.log("HomeView render called"),document.title="Mystory",this.container.innerHTML="",this.container.innerHTML=`
       <section class="hero-section">
         <div class="container">
           <h2 class="main-title">MyStory Apps</h2>
           <p class="main-description">
-            Dengarkan kisah-kisah yang lahir dari berbagai penjuru Indonesia dan negara lainnya. 
-            Setiap titik di peta menyimpan sepotong harapan, kenangan, dan suara hati yang tak ingin dilupakan. 
-            "Karena setiap tempat punya cerita dan setiap cerita layak untuk didengar."
+            Platform berbagi cerita berdasarkan lokasi di Indonesia. Temukan cerita menarik dari berbagai tempat dan bagikan pengalaman Anda dengan komunitas!
           </p>
         </div>
       </section>
@@ -855,57 +851,6 @@
             <div class="loading-indicator" id="loadingIndicator">
               <i class="fas fa-spinner fa-spin" aria-hidden="true"></i>
               <span>Memuat cerita...</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="how-it-works">
-        <div class="container">
-          <h2 class="section-title">Cara Kerjanya</h2>
-          <div class="steps-container">
-            <div class="step-card">
-              <div class="step-icon">
-                <i class="fas fa-user-plus"></i>
-              </div>
-              <h3>1. Daftar Akun</h3>
-              <p>Buat akun gratis untuk mulai berbagi cerita Anda</p>
-            </div>
-            <div class="step-card">
-              <div class="step-icon">
-                <i class="fas fa-map-pin"></i>
-              </div>
-              <h3>2. Pilih Lokasi</h3>
-              <p>Tandai lokasi cerita Anda di peta interaktif</p>
-            </div>
-            <div class="step-card">
-              <div class="step-icon">
-                <i class="fas fa-book-open"></i>
-              </div>
-              <h3>3. Bagikan Cerita</h3>
-              <p>Tulis dan unggah cerita Anda dengan foto</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="testimonials">
-        <div class="container">
-          <h2 class="section-title">Kata Pengguna</h2>
-          <div class="testimonial-carousel">
-            <div class="testimonial-card">
-              <div class="testimonial-content">
-                <p>"PetaBicara membantu saya menemukan tempat-tempat tersembunyi yang tidak pernah saya ketahui sebelumnya!"</p>
-              </div>
-              <div class="testimonial-author">
-                <div class="author-avatar">
-                  <i class="fas fa-user-circle"></i>
-                </div>
-                <div class="author-info">
-                  <h4>Muhammad Taufan Akbar</h4>
-                  <p>Petualang</p>
-                </div>
-              </div>
             </div>
           </div>
         </div>
